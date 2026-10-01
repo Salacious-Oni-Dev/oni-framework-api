@@ -1,0 +1,11 @@
+# VS/dotnet project files
+.vs/
+bin/
+obj/
+
+# Written by build.sh from VERSION + git on every build (see OniFramework/BuildStamp.cs).
+# Not tracked: it is derived, and a tracked copy would conflict on every branch that has a
+# different commit count -- which is every branch. The csproj errors with a pointer to
+# build.sh if it is missing, so a plain `dotnet build` cannot silently produce an unstamped
+# assembly.
+OniFramework/Version.generated.cs

@@ -1,0 +1,14 @@
+oni-framework-api
+Copyright (c) 2026 Salacious
+
+Licensed under the MIT License; see LICENSE.
+
+Oxygen Not Included is developed and published by Klei Entertainment. This project is
+not affiliated with or endorsed by Klei Entertainment.
+
+This repository contains no file of the game: no Klei source code, game binaries, game
+assets or game data. Building it needs an installed copy of the game, whose assemblies
+are referenced at build time and are not copied into the output.
+
+No third-party source code is included. The framework calls Harmony, which the game
+ships; it is referenced at build time and is not redistributed here.

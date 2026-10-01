@@ -1,0 +1,3 @@
+title: "OniFramework (shared API, no gameplay)"
+description: "The shared API of the ONI simulation SDK. It adds no gameplay, and mods that use it switch on what they need. It carries the SDK's replacement SimDLL and, if you accept when the main menu asks, puts it in place each time the game starts and puts the game's own back when it quits. Install it once, as its own mod, and keep it above every mod that uses it in the Mods screen. If it finds one of them above it, it moves itself up, says so, and restarts the game once. Its build watermark names the simulation library in use."
+staticID: "OniFramework"

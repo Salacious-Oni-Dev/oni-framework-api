@@ -1,0 +1,119 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>OniFramework</RootNamespace>
+    <AssemblyName>OniFramework</AssemblyName>
+    <!-- Inert: Directory.Build.props sets GenerateAssemblyInfo=false, so no version attribute
+         is emitted from this and nothing reads it. The version that actually ships is the one
+         build.sh writes into Version.generated.cs from the VERSION file plus git; kept here
+         only so a reader who looks for a version in the csproj is sent to the real one. -->
+    <Version>0.1.0</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Version.generated.cs" />
+    <Compile Include="BuildStamp.cs" />
+    <Compile Include="FrameworkLog.cs" />
+    <Compile Include="LoadOrderRepair.cs" />
+    <Compile Include="SimDllDelivery.cs" />
+    <Compile Include="SimVersion.cs" />
+    <Compile Include="GcRuntime.cs" />
+    <Compile Include="FrameworkVersion.cs" />
+    <Compile Include="RigSaves.cs" />
+    <Compile Include="SaveMigrationHandler.cs" />
+    <Compile Include="OniExtMessages.cs" />
+    <Compile Include="ThermalMassBonus.cs" />
+    <Compile Include="MaterialProperties.cs" />
+    <Compile Include="ElementRegistry.cs" />
+    <Compile Include="DemoNarrator.cs" />
+    <Compile Include="HoverCard.cs" />
+    <Compile Include="DemoRig.cs" />
+    <Compile Include="RigHarness.cs" />
+    <Compile Include="RigRegistry.cs" />
+    <Compile Include="RigBlueprint.cs" />
+    <Compile Include="BlueprintDump.cs" />
+    <Compile Include="BlueprintWorld.cs" />
+    <Compile Include="StructureTemperatureGuard.cs" />
+    <Compile Include="BuildingPaint.cs" />
+    <Compile Include="PaintableBuilding.cs" />
+    <Compile Include="BuildingPaintAll.cs" />
+    <Compile Include="BuildingPaintSideScreen.cs" />
+    <Compile Include="SymbolPaintAnalysis.cs" />
+    <Compile Include="BlueprintBuilder.cs" />
+    <Compile Include="BlueprintUtilities.cs" />
+    <Compile Include="FrameGeometry.cs" />
+    <Compile Include="RigDiagnostics.cs" />
+    <Compile Include="RigCrashScreen.cs" />
+    <Compile Include="GasMixtureFacade.cs" />
+    <Compile Include="AtmosphereFacade.cs" />
+    <Compile Include="ElementChunkFacade.cs" />
+    <Compile Include="DebugInspectorServer.cs" />
+    <Compile Include="DebugBulkRoutes.cs" />
+    <Compile Include="ConduitNetworks.cs" />
+    <Compile Include="SimConduitNetworks.cs" />
+    <Compile Include="PipeNetworkFacade.cs" />
+    <Compile Include="PipeMatterFacade.cs" />
+    <Compile Include="PipeHeatExchange.cs" />
+    <Compile Include="PhaseVessel.cs" />
+    <Compile Include="Convection.cs" />
+    <Compile Include="PhysicsFacade.cs" />
+    <Compile Include="PowerHeat.cs" />
+    <Compile Include="EnergyLedgerFacade.cs" />
+    <Compile Include="ExhaustHeat.cs" />
+    <Compile Include="Radiation.cs" />
+    <Compile Include="SimRandom.cs" />
+    <Compile Include="SimScheduling.cs" />
+    <Compile Include="SimDiseaseGrowth.cs" />
+    <Compile Include="SimCellRadiation.cs" />
+    <Compile Include="SimVisibilityState.cs" />
+    <Compile Include="SimRegistryState.cs" />
+    <Compile Include="SimExtCellState.cs" />
+    <Compile Include="SimExtRegistry.cs" />
+    <Compile Include="SimExtRegistrar.cs" />
+    <Compile Include="SimExtCellProperties.cs" />
+    <Compile Include="SimExtElementAttributes.cs" />
+    <Compile Include="SimExtEventStreams.cs" />
+    <Compile Include="SimExtFrame.cs" />
+    <Compile Include="SimExtPhases.cs" />
+    <Compile Include="SimExtMessages.cs" />
+    <Compile Include="SimRooms.cs" />
+    <Compile Include="SimRaycast.cs" />
+    <Compile Include="SimFields.cs" />
+    <Compile Include="SimProfile.cs" />
+    <Compile Include="SimCorpus.cs" />
+    <Compile Include="SimExtSelfTest.cs" />
+    <Compile Include="SimGasSleeping.cs" />
+    <Compile Include="SimStableTicks.cs" />
+    <Compile Include="SimTunable.cs" />
+    <Compile Include="SimTunables.cs" />
+    <Compile Include="SimTunablesConfig.cs" />
+    <Compile Include="NotificationSafety.cs" />
+    <Compile Include="ConduitBackpressure.cs" />
+    <Compile Include="BlueprintRig.cs" />
+    <Compile Include="ConversionEnthalpyRule.cs" />
+    <Compile Include="StirlingCycleRule.cs" />
+    <Compile Include="ConversionEnthalpy.cs" />
+    <Compile Include="GeneratorEnthalpy.cs" />
+    <Compile Include="TurbineHeat.cs" />
+    <Compile Include="ColdBreatherHeat.cs" />
+    <Compile Include="Solubility.cs" />
+    <Compile Include="Bubbles.cs" />
+    <Compile Include="LiquidPayload.cs" />
+    <Compile Include="DissolvedGas.cs" />
+    <Compile Include="LiquidTint.cs" />
+    <Compile Include="Effervescence.cs" />
+    <Compile Include="DissolvedCargo.cs" />
+    <Compile Include="DissolvedCargoComponent.cs" />
+    <Compile Include="DissolvedCargoPatches.cs" />
+    <Compile Include="OverlayTextureCache.cs" />
+    <None Include="mod.yaml" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="mod_info.yaml" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  <!-- Same idiom as Directory.Build.props's VerifyGameAssemblies, and for the same
+       reason: without it a missing generated file surfaces only as CS0103 naming a type nobody
+       wrote by hand, which says nothing about the cause. Version.generated.cs is derived and
+       deliberately untracked, so a fresh clone has no copy until build.sh has run once. -->
+  <Target Name="VerifyVersionStamped" BeforeTargets="ResolveAssemblyReferences">
+    <Error Condition="!Exists('$(MSBuildThisFileDirectory)Version.generated.cs')"
+           Text="Version.generated.cs is missing. It is generated, not tracked; build through build.sh (which writes it from VERSION + git) rather than invoking dotnet build directly." />
+  </Target>
+
+</Project>

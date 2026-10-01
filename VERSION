@@ -1,0 +1,2 @@
+0.1
+# MAJOR.MINOR of the framework API. build.sh appends the revision and commit: MAJOR.MINOR.REV+SHA.
